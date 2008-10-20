@@ -1,0 +1,20 @@
+This library is copyrighted to Henrik Andersson (henke37) 2008.
+
+Definitions:
+This library means the header files, the source code and any files generated from them, excluding final executables for applications and libraries created as extensions to this library.
+
+Basic rules:
+You are allowed to use this library as it is without any royalty. You may not redistribute this library.
+You are allowed to edit this library, but you may not distribute any changed files unless you clearly mark them as changed. To clarify, if you edit the files, you may distribute the files, if you clearly mark them as edited.
+
+Credits:
+You are required to give credit if you use this library in the form of mentioning that it was used in any credits listings that may exist in your application.
+
+Selling:
+You are not allowed to sell this library. You are allowed to sell software that uses this library. You are allowed to sell extensions to this library. You may not charge any distribution fee.
+
+Warranties:
+This library comes with no warranties, implied or otherwise. If you lose money by using this library, though shit, not my problem. I make no claims about the library being fit for any use. And this library is not designed for mission critical systems such as but not limited to airplanes and hospital equipment.
+
+Patents:
+This library uses the LibMAD library, but it is your responsibility to take care of any patents, about the MP3 format or otherwise. The author of this library is to be free of all responsibilities.
