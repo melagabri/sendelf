@@ -16,6 +16,7 @@ namespace HSound {
 		unsigned int delay;//measured in samples
 		bool allowPading;
 		SoundSample padding;
+		void setDelay(unsigned int len);
 	protected:
 		mutex_t delayBufferMutex;
 		deque<SoundSample> delayBuffer;

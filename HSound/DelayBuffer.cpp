@@ -42,6 +42,12 @@ namespace HSound {
 
 	};
 
+	void DelayBuffer::setDelay(unsigned int len) {
+		LWP_MutexLock(delayBufferMutex);
+		delayBuffer.resize(len);
+		LWP_MutexUnlock(delayBufferMutex);
+	};
+
 	DelayBuffer::DelayBuffer() {
 		LWP_MutexInit(&delayBufferMutex,0);
 	};
