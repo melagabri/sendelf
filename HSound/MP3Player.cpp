@@ -71,7 +71,7 @@ namespace HSound {
 
 				TargetReadSize=inputbufferLength;
 
-				ReadSize=readFile(InputBuffer,readPos,TargetReadSize);
+				//ReadSize=readFile(InputBuffer,readPos,TargetReadSize);
 				readPos+=ReadSize;
 
 				//see if we just ran out of buffer

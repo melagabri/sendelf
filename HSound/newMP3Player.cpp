@@ -4,13 +4,47 @@
 //memset and company:
 #include <cstring>
 
-//uhm, I fotgot
+//uhm, I fotgot why
 #include <climits>
 
 //rounding
 #include <cmath>
 
 #include <debug.h>
+
+#define NO_RESAMPLE
+
+/*
+This code is based on the madld sample library copyright to Bertrand Petit 2001-2004
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions	
+  are met:													
+ 																		
+  1. Redistributions of source code must retain the above copyright	
+     notice, this list of conditions and the following disclaimer.
+ 																
+  2. Redistributions in binary form must reproduce the above
+     copyright notice, this list of conditions and the following
+     disclaimer in the documentation and/or other materials provided
+     with the distribution.
+  													
+  3. Neither the name of the author nor the names of its contributors
+     may be used to endorse or promote products derived from this
+     software without specific prior written permission.
+ 
+  THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS''
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+  USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+  SUCH DAMAGE.
+*/
 
 namespace HSound {
 
@@ -19,8 +53,7 @@ namespace HSound {
 		setSampleRate(false),
 		resampleOutBufferLength(0),
 		resampleOutBuffer(0),
-		readLastFrame(false),
-		readPos(0)
+		readLastFrame(false)
 	{
 		mad_stream_init(&Stream);
 		mad_frame_init(&Frame);
@@ -54,6 +87,7 @@ namespace HSound {
 					/*fprintf(stderr,"%s: recoverable frame level error (%s)\n",
 							ProgName,MadErrorString(&Stream));
 					fflush(stderr);*/
+					_break();
 				}
 				return false;
 			} else if(Stream.error==MAD_ERROR_BUFLEN) {
@@ -88,8 +122,11 @@ namespace HSound {
 			} else {
 				right=left;
 			}
-
+#ifdef NO_RESAMPLE
+			outputBuffer.push_front(SoundSample(left,right));
+#else
 			synthedSamples.push_front(std::make_pair(left,right));
+#endif
 		}
 	}
 
@@ -137,7 +174,13 @@ namespace HSound {
 			} catch (...) {
 				_break();
 			}
+#ifndef NO_RESAMPLE
 		} while (synthedSamples.size()<resampleInputSize);
+
+#else
+		} while (false);
+		return;
+#endif
 
 		unsigned int goalResampleInBufferLength=synthedSamples.size();
 
@@ -197,8 +240,6 @@ namespace HSound {
 			outputBuffer.push_front(	SoundSample(left,right) );
 		}
 
-
-
 		if(endOfInput) {
 			_break();
 			throw EndOfInput();
@@ -207,37 +248,38 @@ namespace HSound {
 	}
 
 	void newMP3Player::readMP3Frame() throw(EndOfInput) {
-
-		size_t ReadSize,TargetReadSize;
-
-		if(Stream.next_frame!=NULL) {//we jump back to not skip the unused parts from last time
-			size_t Remaining=Stream.bufend-Stream.next_frame;
-			readPos-=Remaining;
+		if(readLastFrame) {
+			throw EndOfInput();
 		}
 
-		TargetReadSize=readBufferLength;
+		unsigned int Remaining;
+		u8 *ReadStart;
+		unsigned int ReadSize;
+		if(Stream.next_frame!=NULL) {
+			Remaining=Stream.bufend-Stream.next_frame;
+			memmove(readBuffer,Stream.next_frame,Remaining);
+			ReadStart=readBuffer+Remaining;
+			ReadSize=readBufferLength-Remaining;
+		} else {
+			ReadSize=readBufferLength;
+			ReadStart=readBuffer;
+			Remaining=0;
+		}
 
-		ReadSize=readFile(readBuffer,readPos,TargetReadSize);
-		readPos+=ReadSize;
+		unsigned int readLen=readFile(readBuffer,ReadSize);//BstdRead(ReadStart,1,ReadSize,BstdFile);
 
-		//see if we just ran out of buffer
-		bool lastBuffer=ReadSize<TargetReadSize;
-
-		if(lastBuffer) {
-			GuardPtr=readBuffer+ReadSize;
+		if(readLen<ReadSize) {
+			GuardPtr=ReadStart+readLen;
 			memset(GuardPtr,0,MAD_BUFFER_GUARD);
 			ReadSize+=MAD_BUFFER_GUARD;
 			readLastFrame=true;
 		}
 
-		//now it's not our problem anymore. You wish!
-		mad_stream_buffer(&Stream,readBuffer,ReadSize);
-
-		Stream.error=MAD_ERROR_NONE;
+		mad_stream_buffer(&Stream,readBuffer,ReadSize+Remaining);
+		Stream.error=(mad_error)0;
 	}
 
-	void newMP3Player::seek(const unsigned int pos) {
-		readPos=pos;
+	void newMP3Player::seek(const unsigned int) {
 		readLastFrame=false;
 		synthedSamples.clear();
 		outputBuffer.clear();

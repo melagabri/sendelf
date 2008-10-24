@@ -11,7 +11,7 @@ namespace HSound {
 		SoundPlayer(void);
 		virtual ~SoundPlayer(void);
 		bool soundComplete;
-		virtual unsigned int readFile(u8 *buffer, unsigned int ReadStart, unsigned int length)=0;//length is in bytes
+		virtual unsigned int readFile(u8 *buffer, unsigned int length)=0;//length is in bytes
 	};
 
 };

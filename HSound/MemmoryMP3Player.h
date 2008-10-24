@@ -12,9 +12,12 @@ namespace HSound {
 		virtual ~MemmoryMP3Player(void);
 
 		//note: length is intentionaly non const!
-		virtual unsigned int readFile(u8 *buffer, unsigned int ReadStart, unsigned int length);//length is in bytes
+		virtual unsigned int readFile(u8 *buffer, unsigned int length);//length is in bytes
+
+		virtual void seek(const unsigned int pos);
 
 	private:
+		unsigned int readPos;
 		const u8 *buffer;
 		const unsigned int bufferLength;
 	};

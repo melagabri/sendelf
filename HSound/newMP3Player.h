@@ -44,7 +44,6 @@ namespace HSound {
 		bool setSampleRate;
 		double inputPerOutputRatio;
 
-		size_t readPos;
 		static const unsigned int readBufferLength = 5*8192;//in bytes
 		u8 readBuffer[readBufferLength+MAD_BUFFER_GUARD];
 		u8 *GuardPtr;
