@@ -1,4 +1,4 @@
-all: sound.elf
+all: sound.dol
 
 ifeq ($(strip $(DEVKITPPC)),)
 $(error "Please set DEVKITPPC in your environment. export DEVKITPPC=<path to>devkitPPC)
