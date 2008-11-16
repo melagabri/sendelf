@@ -2,8 +2,6 @@
 #ifndef SOUNDSOURCE_H
 #define SOUNDSOURCE_H
 
-#include <gctypes.h>
-
 #include "SoundSample.h"
 
 namespace HSound {

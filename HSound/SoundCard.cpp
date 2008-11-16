@@ -132,10 +132,8 @@ namespace HSound {
 	void SoundCard::SetRightVolume(u8 level) {
 		AUDIO_SetStreamVolRight(level);
 	};
-			
-	#ifndef MANUAL_SOUNDCARD_CREATION
+
 	SoundCard soundCard;
-	#endif
 
 	bool SoundCard::created=false;
 

@@ -12,7 +12,7 @@ namespace HSound {
 
 	unsigned int SineGenerator::loadNextBuffer(SoundSample *buff,unsigned int length) throw() {
 		for(unsigned int i=0;i<length;++i) {
-			u16 s=(sin(offset+=step)+1)*255;
+			signed short s=(sin(offset+=step)+1)*255;
 			buff[i].left=s;
 			buff[i].right=s;
 		}

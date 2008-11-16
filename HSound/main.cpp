@@ -58,7 +58,7 @@ int main() {
 
 	// Configure for use with WIFI on port 2300
 	//DEBUG_Init(GDBSTUB_DEVICE_WIFI, 2300);
-	//DEBUG_Init(GDBSTUB_DEVICE_USB, 1);
+	DEBUG_Init(GDBSTUB_DEVICE_USB, 1);
 	// This function call enters the debug stub for the first time 
 	// It's needed to call this if one wants to start debugging.
 	_break();
@@ -68,7 +68,7 @@ int main() {
 	SilenceGenerator silence;
 	SineGenerator sine;
 #ifdef MP3TEST
-	MemmoryMP3Player mp3Player(embeded_mp3,embeded_mp3_size);
+	MemmoryMP3Player mp3Player((char*)embeded_mp3,embeded_mp3_size);
 	OnePlayBackup mp3Backup(&mp3Player);
 #endif
 	SoundMixer mixer;

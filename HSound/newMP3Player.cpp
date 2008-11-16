@@ -10,7 +10,9 @@
 //rounding
 #include <cmath>
 
-#include <debug.h>
+extern "C" {
+void _break();
+}
 
 #define NO_RESAMPLE
 
@@ -253,7 +255,7 @@ namespace HSound {
 		}
 
 		unsigned int Remaining;
-		u8 *ReadStart;
+		unsigned char *ReadStart;
 		unsigned int ReadSize;
 		if(Stream.next_frame!=NULL) {
 			Remaining=Stream.bufend-Stream.next_frame;
@@ -266,7 +268,7 @@ namespace HSound {
 			Remaining=0;
 		}
 
-		unsigned int readLen=readFile(readBuffer,ReadSize);//BstdRead(ReadStart,1,ReadSize,BstdFile);
+		unsigned int readLen=readFile((char*)ReadStart,ReadSize);//BstdRead(ReadStart,1,ReadSize,BstdFile);
 
 		if(readLen<ReadSize) {
 			GuardPtr=ReadStart+readLen;

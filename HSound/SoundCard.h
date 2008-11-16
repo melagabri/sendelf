@@ -43,9 +43,7 @@ namespace HSound {
 
 	};
 
-	#ifndef MANUAL_SOUNDCARD_CREATION
 	extern SoundCard soundCard;
-	#endif
 
 };
 

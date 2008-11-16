@@ -45,8 +45,8 @@ namespace HSound {
 		double inputPerOutputRatio;
 
 		static const unsigned int readBufferLength = 5*8192;//in bytes
-		u8 readBuffer[readBufferLength+MAD_BUFFER_GUARD];
-		u8 *GuardPtr;
+		unsigned char readBuffer[readBufferLength+MAD_BUFFER_GUARD];
+		unsigned char *GuardPtr;
 		bool readLastFrame;
 
 		deque< std::pair<float,float> > synthedSamples;
