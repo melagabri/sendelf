@@ -1,4 +1,4 @@
-
+#if 0
 #include "newMP3Player.h"
 
 //memset and company:
@@ -17,7 +17,8 @@ void _break();
 #define NO_RESAMPLE
 
 /*
-This code is based on the madld sample library copyright to Bertrand Petit 2001-2004
+This code is based on the madld sample library copyright to Bertrand Petit 2001-2004 that has the following license:
+
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions	
   are met:													
@@ -299,3 +300,4 @@ namespace HSound {
 			
 		
 }
+#endif

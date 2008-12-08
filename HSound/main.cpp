@@ -1,4 +1,5 @@
 #include "Sound.h"
+#include "MemmoryFileReader.h"
 using namespace HSound;
 #include <gccore.h>
 
@@ -10,6 +11,7 @@ using namespace wsp;
 #include "Canvas.h"
 
 #include "SoundDumper.h"
+
 
 #include "embeded_mp3.h"
 
@@ -58,28 +60,20 @@ int main() {
 
 	// Configure for use with WIFI on port 2300
 	//DEBUG_Init(GDBSTUB_DEVICE_WIFI, 2300);
-	DEBUG_Init(GDBSTUB_DEVICE_USB, 1);
+	//DEBUG_Init(GDBSTUB_DEVICE_USB, 1);
 	// This function call enters the debug stub for the first time 
 	// It's needed to call this if one wants to start debugging.
 	_break();
 
-#define MP3TEST
+	//const char *fakefile="AA";
+	//MemmoryFileReader reader(fakefile,3);
+	//SoundPlayer s(&reader,WAV);
 
 	SilenceGenerator silence;
 	SineGenerator sine;
-#ifdef MP3TEST
-	MemmoryMP3Player mp3Player((char*)embeded_mp3,embeded_mp3_size);
-	OnePlayBackup mp3Backup(&mp3Player);
-#endif
 	SoundMixer mixer;
 	SoundChannel sineChannel(&sine);
 	SoundChannel silenceChannel(&silence);
-#ifdef MP3TEST
-	SoundChannel mp3Channel(&mp3Backup);
-	mp3Channel.leftLevel=1;
-	mp3Channel.rightLevel=1;
-	mixer.addChannel(&mp3Channel);
-#endif
 	mixer.addChannel(&silenceChannel);
 	mixer.addChannel(&sineChannel);
 
@@ -137,21 +131,11 @@ int main() {
 			sine.step-=0.003;
 		}
 
-#ifdef MP3TEST
-		//keep the song looping
-		if(mp3Player.soundComplete) {
-			mp3Player.seek(0);
-		}
-#endif
-
 	}
 
 	soundCard.SetSource(0);
 	mixer.removeChannel(&sineChannel);
 	sineChannel.SetSource(0);
-#ifdef MP3TEST
-	mp3Channel.SetSource(0);
-#endif
 
 	return 0;
 };

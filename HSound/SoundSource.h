@@ -11,6 +11,7 @@ namespace HSound {
 		SoundSource(void);
 		virtual ~SoundSource(void);
 		virtual unsigned int loadNextBuffer(SoundSample *buffer, unsigned int length) throw()=0;//length is in samples, not bytes!
+		virtual unsigned int getSampleRate() const;
 	};
 
 };

@@ -6,6 +6,10 @@ namespace HSound {
 		LWP_MutexInit(&sourceMutex,0);
 	};
 
+	SoundSink::SoundSink(SoundSource *s) : source(s) {
+		LWP_MutexInit(&sourceMutex,0);
+	}
+
 	SoundSink::~SoundSink(void) {
 		LWP_MutexDestroy(sourceMutex);
 	};

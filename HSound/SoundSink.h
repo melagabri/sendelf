@@ -11,6 +11,7 @@ namespace HSound {
 	class SoundSink {
 	public:
 		SoundSink(void);
+		SoundSink(SoundSource *);
 		virtual ~SoundSink(void);
 		virtual void SetSource(SoundSource *);
 	protected:

@@ -21,7 +21,7 @@ namespace HSound {
 	using std::list;
 	using std::deque;
 
-	class newMP3Player :	public SoundPlayer, public boost::noncopyable {
+	class newMP3Player : public boost::noncopyable {
 	public:
 		newMP3Player();
 		~newMP3Player();
@@ -30,7 +30,7 @@ namespace HSound {
 
 	private:
 
-		class EndOfInput : public std::exception {};//todo, make it extend some base exception class
+		class EndOfInput : public std::exception {};
 		class BadFrame : public std::exception {};
 		class BadSRCStatus : public std::exception {};
 

@@ -8,4 +8,8 @@ namespace HSound {
 	SoundSource::~SoundSource(void) {
 	};
 
+	unsigned int SoundSource::getSampleRate() const {
+		return 0;
+	};
+
 };
