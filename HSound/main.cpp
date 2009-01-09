@@ -65,9 +65,9 @@ int main() {
 	// It's needed to call this if one wants to start debugging.
 	_break();
 
-	//const char *fakefile="AA";
-	//MemmoryFileReader reader(fakefile,3);
-	//SoundPlayer s(&reader,WAV);
+	const char *fakefile="AA";
+	MemmoryFileReader reader(fakefile,3);
+	SoundPlayer s(&reader,WAV);
 
 	SilenceGenerator silence;
 	SineGenerator sine;
@@ -79,14 +79,9 @@ int main() {
 
 	sine.step=0.003;
 
-#ifndef SOUNDDUMPER
-	//soundCard.SetSource(&mixer);
-	//soundCard.SetSource(&mp3Backup);
-	//soundCard.SetSource(&sine);
-#else
 	t.SetSource(&mixer);
 	soundCard.SetSource(&t);
-#endif
+
 	bool soundMode=false;
 
 	bool keepRunning=true;

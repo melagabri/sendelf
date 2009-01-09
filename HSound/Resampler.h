@@ -32,9 +32,13 @@ namespace HSound {
 		SRC_DATA resamplingData;
 
 		float *resampleInBuffer;
+		unsigned int resampleInBufferLength;//in floats
+		unsigned int resampleInBufferContentLength;//in floats
 
-		unsigned int resampleOutBufferLength;
+		unsigned int resampleOutBufferLength;//in floats
+		unsigned int resampleOutBufferContentLength;//in floats
 		float *resampleOutBuffer;
+		float *resampleOutBufferPos;
 
 		unsigned int readBufferLength;
 		SoundSample *readBuffer;
