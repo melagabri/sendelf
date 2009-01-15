@@ -12,7 +12,7 @@ namespace HSound {
 	public:
 		MemmoryFileReader(const char *,size_t);
 		~MemmoryFileReader();
-		virtual void readAbs(size_t,char*,size_t) throw(EOFException);
+		virtual size_t readAbs(size_t,char*,size_t) throw(EOFException);
 		size_t size;
 	private:
 		const char *buffer;

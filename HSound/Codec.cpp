@@ -7,5 +7,7 @@ namespace HSound {
 			throw "The parser can not be null!";
 		}
 	};
+
+	Codec::Codec() : parser(0) {};
 	Codec::~Codec() {};
 };

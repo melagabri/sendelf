@@ -8,10 +8,17 @@ namespace HSound {
 	MemmoryFileReader::~MemmoryFileReader() {
 	};
 
-	void MemmoryFileReader::readAbs(size_t pos,char* outBuffer,size_t readLength) throw(EOFException) {
-		if(pos+readLength>=size) throw EOFException();
+	size_t MemmoryFileReader::readAbs(size_t pos,char* outBuffer,size_t readLength) throw(EOFException) {
+		if(pos>=size) throw EOFException();
+		if(readLength+pos>size) {
+			size_t endpos=readLength+pos;
+			
+			readLength=endpos-pos+1;
+		}
 
 		memcpy(outBuffer,const_cast<char *>(buffer),readLength);
+
+		return readLength;
 	}
 
 

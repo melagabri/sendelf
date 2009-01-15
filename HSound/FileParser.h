@@ -6,15 +6,15 @@
 #include <cstring>
 
 namespace HSound {
-	class FileReader;
+	class SoundPlayer;
 	class FileParser : public SoundSource {
 	public:
-		FileParser(FileReader *reader);
+		FileParser(SoundPlayer *);
 		virtual ~FileParser();
 		virtual unsigned int loadNextBuffer(SoundSample *buffer, unsigned int length) throw()=0;
 		virtual unsigned int readSoundData(char *,size_t)=0;
 	protected:
-		FileReader *reader;
+		SoundPlayer *player;
 	};
 };
 #endif

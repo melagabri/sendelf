@@ -9,9 +9,10 @@ namespace HSound {
 	class Codec : public SoundSource {
 	public:
 		Codec(FileParser *);
+		Codec();
 		virtual ~Codec();
 		virtual unsigned int loadNextBuffer(SoundSample *buffer, unsigned int length) throw()=0;
-	private:
+	protected:
 		FileParser *parser;
 	};
 

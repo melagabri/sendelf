@@ -14,7 +14,7 @@ namespace HSound {
 		virtual ~FileReader();
 
 		size_t size;
-		virtual void readAbs(size_t,char*,size_t) throw(EOFException)=0;
+		virtual size_t readAbs(size_t,char*,size_t) throw(EOFException)=0;
 		
 	};
 };

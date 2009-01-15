@@ -2,9 +2,9 @@
 
 namespace HSound {
 
-	FileParser::FileParser(HSound::FileReader *reader_p) : reader(reader_p) {
-		if(reader==0) {
-			throw "reader can not be null!";
+	FileParser::FileParser(SoundPlayer *player_p) : player(player_p) {
+		if(player==0) {
+			throw "player can not be null!";
 		}
 	};
 

@@ -22,11 +22,14 @@ namespace HSound {
 		virtual ~SoundPlayer(void);
 		bool soundComplete;
 		virtual unsigned int loadNextBuffer(SoundSample *buffer,unsigned int length) throw();//length is in samples
-	private:
+
+		//not for normal users, this is mainly for the internal classes
+		//touch this stuff and you lose support
 		Resampler *resampler;
 		FileReader *reader;
 		FileParser *parser;
 		Codec *codec;
+	private:
 
 		void createResampler(unsigned int bitrate);
 

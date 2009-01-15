@@ -7,13 +7,10 @@
 
 namespace HSound {
 
-	WavParser::WavParser(SoundPlayer *player, FileReader *reader_p) : FileParser(reader_p),dataChunkPos(0),readPos(0) {
-		if(player==0) {
-			throw "player can not be null!";
-		}
+	WavParser::WavParser(SoundPlayer *player_p) : FileParser(player_p),dataChunkPos(0),readPos(0) {
 
 		char fileHeader[12];
-		reader->readAbs(0,fileHeader,sizeof(fileHeader));
+		player->reader->readAbs(0,fileHeader,sizeof(fileHeader));
 
 		if(fileHeader[0]!='R' || fileHeader[1]!='I' || fileHeader[2]!='F' || fileHeader[3]!='F') {
 			throw "Invalid RIFF file, lacks signature";
@@ -34,7 +31,7 @@ namespace HSound {
 			throw "Invalid WAVE file, lacks fmt chunk";
 		}
 
-		reader->readAbs(chunkPos+8,(char*)&format,sizeof(format));
+		player->reader->readAbs(chunkPos+8,(char*)&format,sizeof(format));
 
 		switch(format.wFormatTag) {
 			case 1:
@@ -42,7 +39,7 @@ namespace HSound {
 					char bits_char[2];
 					unsigned int bits_int : 16;
 				};
-				reader->readAbs(chunkPos+8+sizeof(format),bits_char,sizeof(bits_char));
+				player->reader->readAbs(chunkPos+8+sizeof(format),bits_char,sizeof(bits_char));
 				player->codec=new PCMCodec(this,format.wChannels,bits_int);
 				player->createResampler(format.dwSamplesPerSec);
 			break;
@@ -66,7 +63,7 @@ namespace HSound {
 		size_t chunkPos=12;//end of the file header
 		for(;;) {
 			char chunkHeader[8];
-			reader->readAbs(chunkPos,chunkHeader,sizeof(chunkHeader));
+			player->reader->readAbs(chunkPos,chunkHeader,sizeof(chunkHeader));
 
 			for(unsigned register int i=0;i<4;++i) {
 				if(chunkHeader[i]!=chunkID[i]) {
@@ -85,7 +82,7 @@ nextchunk:
 	};
 
 	unsigned int WavParser::loadNextBuffer(SoundSample *buffer, unsigned int length) throw() {
-		return codec->loadNextBuffer(buffer,length);
+		return player->codec->loadNextBuffer(buffer,length);
 	};
 
 	unsigned int WavParser::getSampleRate() const {
@@ -100,12 +97,7 @@ nextchunk:
 			dataChunkPos=findChunk("data");//TODO: verify capitialization
 		}
 
-		size_t endPos=readPos+readLength;
-		if(endPos > reader->size) {
-			readLength=reader->size-readPos;
-		}
-
-		reader->readAbs(readPos,outBuff,readLength);
+		player->reader->readAbs(readPos,outBuff,readLength);
 
 		return readLength;
 	};

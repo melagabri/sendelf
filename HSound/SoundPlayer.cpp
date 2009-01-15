@@ -2,6 +2,8 @@
 #include "EofException.h"
 
 #include "WavParser.h"
+#include "RawParser.h"
+#include "MP3Codec.h"
 
 namespace HSound {
 
@@ -12,11 +14,14 @@ namespace HSound {
 
 		switch(type) {
 			case WAV:
-				parser=new WavParser(this,reader);
+				parser=new WavParser(this);
 			break;
 
 			case MP3:
-				//TODO: write the skeleton stuff for this one
+				//TODO: write a nice MP3 file parser that does ID3
+				codec=new MP3Codec();
+				parser=new RawParser(this);
+			break;
 
 			default:
 				throw "Unknown filetype";
@@ -27,6 +32,7 @@ namespace HSound {
 	SoundPlayer::~SoundPlayer(void) {
 		delete parser;
 		delete resampler;
+		delete codec;
 		reader=0;
 	};
 

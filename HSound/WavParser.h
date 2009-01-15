@@ -12,7 +12,7 @@ namespace HSound {
 
 	class WavParser : public FileParser {
 	public:
-		WavParser(SoundPlayer *player,FileReader *);
+		WavParser(SoundPlayer *player);
 		virtual ~WavParser();
 		virtual unsigned int loadNextBuffer(SoundSample *buffer, unsigned int length) throw();
 		virtual unsigned int readSoundData(char *,size_t);
