@@ -1,4 +1,4 @@
-This library is copyrighted to Henrik Andersson (henke37) 2008.
+This library is copyrighted to Henrik Andersson (henke37) 2009.
 
 Definitions:
 This library means the header files, the source code and any files generated
@@ -9,8 +9,7 @@ Basic rules:
 You are allowed to use this library as it is without any royalty.
 You may not redistribute this library.
 You are allowed to edit this library, but you may not distribute any
-changed files unless you clearly mark them as changed. To clarify,
-if you edit the files, you may distribute the files, if you clearly mark them as edited.
+changed files.
 
 Credits:
 You are required to give credit if you use this library in the form of mentioning
