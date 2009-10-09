@@ -17,7 +17,7 @@ HWND hComport_label;
 void updateSendButton(void);
 void updateMode(void);
 
-TCHAR *protocolNames[5]= { TEXT("Svpe (TCP)"), TEXT("HBC (TCP)"), TEXT("HBC (TCP, Compressed)"), TEXT("HBC (Gecko)"), TEXT("HBC (Gecko, Compressed)") };
+TCHAR *protocolNames[5]= { TEXT("Svpe (TCP)"), TEXT("HBC (TCP, - 1.0.4)"), TEXT("HBC (TCP, 1.0.5+)"), TEXT("HBC (Gecko, - 1.0.4)"), TEXT("HBC (Gecko, 1.0.5+)") };
 
 // Message handler for diaog box.
 INT_PTR CALLBACK MainDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
