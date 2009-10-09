@@ -100,7 +100,7 @@ INT_PTR CALLBACK MainDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 				// use the contents of szFile to initialize itself.
 				//ofn.lpstrFile[0] = '\0';
 				ofn.nMaxFile = sizeof(filename);
-				ofn.lpstrFilter = TEXT("DOLs and ELFs\0*.DOL;*.ELF\0DOLs \0*.DOL\0ELFs\0*.ELF\0");
+				ofn.lpstrFilter = TEXT("DOL, ELF and ZIP files\0*.DOL;*.ELF;*.ZIP\0DOL files \0*.DOL\0ELF files\0*.ELF\0ZIP files\0*.ZIP\0");
 				ofn.nFilterIndex = 1;
 				ofn.lpstrFileTitle = NULL;
 				ofn.nMaxFileTitle = 0;
