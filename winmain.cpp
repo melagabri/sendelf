@@ -18,7 +18,6 @@ int APIENTRY _tWinMain(
 	LPTSTR commandline,
 	int
 ) {
-
 	hInst = hInstance;
 	
 	union {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="SendElf"
 	ProjectGUID="{17C3FF4A-D46F-42D7-8BFD-FE50BDA36B3D}"
 	RootNamespace="SendElf"
@@ -41,10 +41,11 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="libs"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="2"
 				WarningLevel="4"
 				WarnAsError="true"
@@ -62,8 +63,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ws2_32.lib Mswsock.lib Advapi32.lib shlwapi.lib"
+				AdditionalDependencies="Ws2_32.lib Mswsock.lib Advapi32.lib shlwapi.lib zlib.lib"
 				LinkIncremental="2"
+				AdditionalLibraryDirectories="libs\lib"
+				IgnoreDefaultLibraryNames="msvcrt.lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeForWindows98="0"
@@ -126,9 +129,10 @@
 				FavorSizeOrSpeed="2"
 				OmitFramePointers="true"
 				EnableFiberSafeOptimizations="true"
+				AdditionalIncludeDirectories="libs"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="true"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				UsePrecompiledHeader="2"
 				WarningLevel="4"
 				WarnAsError="true"
@@ -146,8 +150,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ws2_32.lib Mswsock.lib Advapi32.lib shlwapi.lib kernel32.lib"
+				AdditionalDependencies="Ws2_32.lib Mswsock.lib Advapi32.lib shlwapi.lib kernel32.lib zlib.lib"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="libs\lib"
+				IgnoreDefaultLibraryNames="msvcrt.lib"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -189,6 +195,14 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\ComConnection.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Connection.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\dialog.cpp"
 				>
 			</File>
@@ -197,11 +211,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\gecko\pcfunctions\pcusb.c"
+				RelativePath=".\HbcCompSender.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\HbcSender.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\send.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Sender.cpp"
 				>
 			</File>
 			<File
@@ -229,6 +251,14 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\SvpeSender.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\TcpConnection.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\winmain.cpp"
 				>
 			</File>
@@ -239,7 +269,23 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\ComConnection.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Connection.h"
+				>
+			</File>
+			<File
 				RelativePath=".\globals.h"
+				>
+			</File>
+			<File
+				RelativePath=".\HbcCompSender.h"
+				>
+			</File>
+			<File
+				RelativePath=".\HbcSender.h"
 				>
 			</File>
 			<File
@@ -251,7 +297,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Sender.h"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SvpeSender.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TcpConnection.h"
 				>
 			</File>
 		</Filter>

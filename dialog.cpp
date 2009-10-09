@@ -17,7 +17,7 @@ HWND hComport_label;
 void updateSendButton(void);
 void updateMode(void);
 
-TCHAR *protocolNames[3]= { TEXT("Svpe (TCP)"), TEXT("HB Channel (TCP)"), TEXT("HB Channel (Gecko)") };
+TCHAR *protocolNames[5]= { TEXT("Svpe (TCP)"), TEXT("HBC (TCP)"), TEXT("HBC (TCP, Compressed)"), TEXT("HBC (Gecko)"), TEXT("HBC (Gecko, Compressed)") };
 
 // Message handler for diaog box.
 INT_PTR CALLBACK MainDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
@@ -38,11 +38,11 @@ INT_PTR CALLBACK MainDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 			hComport_label=GetDlgItem(hDlg, IDC_COMPORT_LABEL);
 
 			SetWindowText(hPort, portString);
-			SetWindowText(hIpaddress, ipString);
+			SetWindowText(hIpaddress, (LPCWSTR) ipString);
 			SetWindowText(hFilename, filename);
 			SetWindowText(hArgs, args);
 
-			for(unsigned int i=0;i<3;i++) {
+			for(unsigned int i=0;i<5;i++) {
 				SendMessage(hProtocol,CB_INSERTSTRING,i,(LPARAM)protocolNames[i]);
 			}
 
@@ -118,10 +118,10 @@ INT_PTR CALLBACK MainDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 			} else if(LOWORD(wParam) == IDC_SENDBUTTON) {
 
 				//TCHAR filename [MAX_PATH+1];
-        GetWindowText(hFilename, filename, MAX_PATH);
+				GetWindowText(hFilename, filename, MAX_PATH);
         
 				//char ipString [35];
-				GetWindowText(hIpaddress, ipString, sizeof ipString);
+				GetWindowText(hIpaddress, (LPWSTR) ipString, sizeof ipString);
 				//char portString [10];
 				GetWindowText(hPort, portString, sizeof portString);
 				//char argsString [MAX_ARGS_LEN+1];
@@ -194,10 +194,10 @@ void updateMode(void) {
 	EnableWindow(hArgs,protocol!=0);
 	
 
-	EnableWindow(hPort,protocol!=2);
-	EnableWindow(hIpaddress,protocol!=2);
-	EnableWindow(hPort_label,protocol!=2);
-	EnableWindow(hIpaddress_label,protocol!=2);
+	EnableWindow(hPort,protocol < 3);
+	EnableWindow(hIpaddress,protocol < 3);
+	EnableWindow(hPort_label,protocol < 3);
+	EnableWindow(hIpaddress_label,protocol < 3);
 
 
 }
