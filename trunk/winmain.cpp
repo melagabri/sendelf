@@ -63,7 +63,7 @@ int APIENTRY _tWinMain(
 	}
 
 	if(doSend) {
-		if(ipString==0 || *ipString==0) {
+		if((ipString==0 || *ipString==0) && protocol != 3 && protocol != 4) {
 			MessageBox(NULL,TEXT("The IP address is not yet set, here, have the GUI"),TEXT("A bit too early"),MB_ICONINFORMATION |MB_OK);
 			showDialog=true;
 		} else {
