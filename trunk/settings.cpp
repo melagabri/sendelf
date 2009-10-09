@@ -102,8 +102,8 @@ endofregread:
 
 void save_Settings(void) {
 
-  GetWindowText(hFilename, filename, MAX_PATH);
-	GetWindowText(hIpaddress, ipString, sizeof ipString);
+    GetWindowText(hFilename, filename, MAX_PATH);
+	GetWindowText(hIpaddress, (LPWSTR) ipString, sizeof ipString);
 	GetWindowText(hPort, portString, sizeof portString);
 	GetWindowText(hArgs, args, sizeof args);
 
