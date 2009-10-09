@@ -39,7 +39,7 @@ WriteRegStr HKCR ".elf" "" "WiiExecutable"
 
 WriteRegStr HKCR "WiiExecutable\Shell" "" "send"
 WriteRegStr HKCR "WiiExecutable\Shell\send" "" "Send to &Wii"
-WriteRegStr HKCR "WiiExecutable\Shell\send\command" "" '$INSTDIR\sendelf.exe /send /noshow /file "%1"'
+WriteRegStr HKCR "WiiExecutable\Shell\send\command" "" '"$INSTDIR\sendelf.exe" /send /noshow /file "%1"'
 
 ; write out uninstaller
 WriteUninstaller "$INSTDIR\uninst.exe"

@@ -11,3 +11,4 @@ extern DWORD protocol;
 extern HWND hMainDialog;
 
 int endian_flip(int value);
+PWCHAR* ParseCommandLineArgs(PWCHAR CmdLine, int* _argc);

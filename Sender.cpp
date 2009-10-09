@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "Sender.h"
+#include "globals.h"
 
 CSender::CSender() : fileHandle(NULL), filename(NULL), fileContent(NULL), 
 					 argumentcount(0), arguments(NULL), filesize(-1), connection(NULL)
@@ -43,16 +44,16 @@ void CSender::SetArguments(TCHAR *argv)
 	TCHAR *name = wcsrchr(filename, '\\') + 1;
 	int nameLength = wcslen(name);
 
-	LPWSTR *argsArr = CommandLineToArgvW(argv, &argumentcount);
+	LPWSTR *argsArr = ParseCommandLineArgs(argv, &argumentcount);
 	argumentsLength = (int) ((wcslen(argv) + 1) + nameLength + 1);
 	arguments = new char[argumentsLength];
-	char *argsPos = arguments + nameLength;
+	char *argsPos = arguments + nameLength + 1;
 
 	memset(arguments, 0, argumentsLength);
 
 	WideCharToMultiByte(CP_OEMCP, 0, name, -1, arguments, argumentsLength, NULL, NULL);
 
-	for(int i = 1; i < argumentcount; i++) {
+	for(int i = 0; i < argumentcount; i++) {
 		int length = WideCharToMultiByte(CP_OEMCP, 0, argsArr[i], -1, NULL, 0, NULL, NULL);
 		WideCharToMultiByte(CP_OEMCP, 0, argsArr[i], -1, argsPos, length, NULL, NULL);
 		argsPos += strlen(argsPos) + 1;
