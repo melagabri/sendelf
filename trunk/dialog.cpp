@@ -169,8 +169,10 @@ void updateSendButton(void) {
 	bool enable;
 	DWORD protocol=(DWORD)SendMessage(hProtocol,CB_GETCURSEL,0,0);
 
-	if(protocol!=2) {
-
+	if (protocl < 0 || protocol > 4) {
+		enable = false;
+	}
+	else if(protocol != 3 && protocol != 4) {
 		long ipnumber;
 		SendMessage(hIpaddress,IPM_GETADDRESS,0,(LPARAM)&ipnumber);
 
