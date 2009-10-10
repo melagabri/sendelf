@@ -42,14 +42,11 @@ INT_PTR CALLBACK MainDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 			SetWindowText(hFilename, filename);
 			SetWindowText(hArgs, args);
 
-			for(int i = 0; i < (hInstGecko != NULL ? 5 : 3); i++) {
+			for(unsigned int i=0;i<5;i++) {
 				SendMessage(hProtocol,CB_INSERTSTRING,i,(LPARAM)protocolNames[i]);
 			}
 
-			if (protocol < 0 || protocol >= (DWORD) ((hInstGecko != NULL) ? 5 : 3)) {
-				protocol = DEFAULT_PROTOCOL;
-			}
-			SendMessage(hProtocol,CB_SETCURSEL, protocol, 0);
+			SendMessage(hProtocol,CB_SETCURSEL,protocol,0);
 			
 			DragAcceptFiles(hDlg,true);
 			hMainDialog=hDlg;
@@ -172,10 +169,8 @@ void updateSendButton(void) {
 	bool enable;
 	DWORD protocol=(DWORD)SendMessage(hProtocol,CB_GETCURSEL,0,0);
 
-	if (protocol < 0 || protocol > 4) {
-		enable = false;
-	}
-	else if(protocol != 3 && protocol != 4) {
+	if(protocol!=2) {
+
 		long ipnumber;
 		SendMessage(hIpaddress,IPM_GETADDRESS,0,(LPARAM)&ipnumber);
 

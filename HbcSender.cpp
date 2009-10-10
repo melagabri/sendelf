@@ -23,7 +23,7 @@ void CHbcSender::SendHeaders()
 	buf[6] = (argumentcount >> 8) & 0xFF;
 	buf[7] = argumentcount & 0xFF;
 
-	int fSize = EndianFlip(GetFilesize());
+	int fSize = endian_flip(GetFilesize());
 	memcpy((void *) &buf[8], (void *) &fSize, 4);
 
 	Send((const char *) &buf, 12);

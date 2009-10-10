@@ -30,8 +30,8 @@ void CHbcCompSender::SendHeaders()
 	void *content = GetFileContents();
 	compress = (memcmp(content, "PK\x03\x04", 4) == 0) ? false : CompressFile();
 
-	int cSize = EndianFlip(compressedSize);
-	int fSize = EndianFlip(GetFilesize());
+	int cSize = endian_flip(compressedSize);
+	int fSize = endian_flip(GetFilesize());
 
 	if (compress) {
 		memcpy((void *) &buf[8], (void *) &cSize , 4);

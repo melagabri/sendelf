@@ -18,6 +18,8 @@ public:
 private:
 	HANDLE gecko;
 
+	HINSTANCE hInst;
+
 	Func_FT_Open FT_Open;
 	Func_FT_GetComPortNumber FT_GetComPortNumber;
 	Func_FT_Close FT_Close;
