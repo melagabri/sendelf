@@ -42,7 +42,7 @@ INT_PTR CALLBACK MainDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 			SetWindowText(hFilename, filename);
 			SetWindowText(hArgs, args);
 
-			for(unsigned int i=0;i<5;i++) {
+			for(int i = 0; i < (hInstGecko != NULL ? 5 : 3); i++) {
 				SendMessage(hProtocol,CB_INSERTSTRING,i,(LPARAM)protocolNames[i]);
 			}
 

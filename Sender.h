@@ -22,6 +22,8 @@ public:
 	virtual void Send();
 protected:
 	void Send(const char *buffer, int length);
+	PWCHAR* ParseCommandLineArgs(PWCHAR CmdLine, int* _argc);
+	int EndianFlip(int value);
 
 	CConnection *connection;
 
