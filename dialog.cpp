@@ -46,7 +46,10 @@ INT_PTR CALLBACK MainDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 				SendMessage(hProtocol,CB_INSERTSTRING,i,(LPARAM)protocolNames[i]);
 			}
 
-			SendMessage(hProtocol,CB_SETCURSEL,protocol,0);
+			if (protocol < 0 || protocol >= (DWORD) ((hInstGecko != NULL) ? 5 : 3)) {
+				protocol = DEFAULT_PROTOCOL;
+			}
+			SendMessage(hProtocol,CB_SETCURSEL, protocol, 0);
 			
 			DragAcceptFiles(hDlg,true);
 			hMainDialog=hDlg;

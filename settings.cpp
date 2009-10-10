@@ -18,7 +18,7 @@ void load_Settings(void) {
 	ipString[0]=0;
 	filename[0]=0;
 	args[0]=0;
-	protocol=2;
+	protocol=DEFAULT_PROTOCOL;
 
 	long lSuccess=RegCreateKeyEx(
 		HKEY_CURRENT_USER,
