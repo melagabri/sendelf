@@ -1,19 +1,19 @@
 #include "StdAfx.h"
 #include "ComConnection.h"
+#include "globals.h"
 
 #define FTDI_PACKET_SIZE 3968
 
 CComConnection::CComConnection(void) : gecko(INVALID_HANDLE_VALUE)
 {
-	hInst = LoadLibrary(L"ftd2xx.dll");
-	if (hInst == NULL) {
+	if (hInstGecko == NULL) {
 		throw TEXT("Cannot load the required dll's for USB Gecko.");
 	}
 
 	// Find the functions
-	FT_Open = (Func_FT_Open) GetProcAddress(hInst, "FT_Open");
-	FT_GetComPortNumber = (Func_FT_GetComPortNumber) GetProcAddress(hInst, "FT_GetComPortNumber");
-	FT_Close = (Func_FT_Close) GetProcAddress(hInst, "FT_Close");
+	FT_Open = (Func_FT_Open) GetProcAddress(hInstGecko, "FT_Open");
+	FT_GetComPortNumber = (Func_FT_GetComPortNumber) GetProcAddress(hInstGecko, "FT_GetComPortNumber");
+	FT_Close = (Func_FT_Close) GetProcAddress(hInstGecko, "FT_Close");
 }
 
 CComConnection::~CComConnection(void)
@@ -22,8 +22,8 @@ CComConnection::~CComConnection(void)
 		CloseHandle(gecko);
 	}
 
-	if (hInst != NULL) {
-		FreeLibrary(hInst);
+	if (hInstGecko != NULL) {
+		FreeLibrary(hInstGecko);
 	}
 }
 

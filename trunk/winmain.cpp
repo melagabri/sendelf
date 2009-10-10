@@ -11,7 +11,6 @@ WSADATA wsaData;
 
 INT_PTR CALLBACK MainDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
-
 int APIENTRY _tWinMain(
 	HINSTANCE hInstance,
 	HINSTANCE,
@@ -32,7 +31,8 @@ int APIENTRY _tWinMain(
 	}
 
 	load_Settings();
-
+	
+	hInstGecko = LoadLibrary(L"ftd2xx.dll");
 	
 	bool showDialog=true;
 	bool doSend=false;
@@ -80,6 +80,7 @@ int APIENTRY _tWinMain(
 		DialogBoxW(hInst, MAKEINTRESOURCE(IDD_MAINDIALOG), 0, MainDialog);
 	}
 
+	FreeLibrary(hInstGecko);
 
 	WSACleanup();
 

@@ -14,7 +14,7 @@ CSvpeSender::~CSvpeSender(void)
 void CSvpeSender::SendHeaders()
 {
 	char buf[4];
-	int fSize = endian_flip(GetFilesize());
+	int fSize = EndianFlip(GetFilesize());
 	memcpy(&buf, (void *) &fSize, 4);
 
 	Send((const char *) &buf, 4);

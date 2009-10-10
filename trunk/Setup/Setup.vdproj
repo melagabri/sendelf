@@ -75,6 +75,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -145,7 +153,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_B4292CADA16347CBAB7A731E3A425224"
                     {
                     "Name" = "8:SendElf"
-                    "AlwaysCreate" = "11:TRUE"
+                    "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_707F30AA021542918881F02F59A926B0"
@@ -159,7 +167,7 @@
             {
             "DefaultLocation" = "8:[ProgramFilesFolder][ProductName]"
             "Name" = "8:#1925"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:TARGETDIR"
@@ -183,14 +191,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SendElf"
-        "ProductCode" = "8:{705CD1FA-8BA2-4D2B-98BC-A704127269E3}"
-        "PackageCode" = "8:{62A433B9-56F2-4442-A01A-CB71B9C76F87}"
+        "ProductCode" = "8:{68B37A8F-C7D2-47C8-850B-4DAA16BB2CBA}"
+        "PackageCode" = "8:{309C58FF-E965-4CCA-BD8E-58432BDA81C4}"
         "UpgradeCode" = "8:{9D39DBC5-C7CB-43A8-B55A-9CA35D30DCAC}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:5.0"
+        "ProductVersion" = "8:5.1"
         "Manufacturer" = "8:Henke37, Dasda & r-win"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://wiibrew.org/wiki/Sendelf"
@@ -419,7 +427,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9BBC21E5DBF5483998C05B42815CB637"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F73143136F424A589594D650FA63FABD"
             {
             "Name" = "8:SendElf"
             "Arguments" = "8:"
@@ -427,7 +435,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:107"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_B4292CADA16347CBAB7A731E3A425224"
+            "Target" = "8:_26FA61B510364BD6AAE79FD67FD9DEBD"
             "Folder" = "8:_B4292CADA16347CBAB7A731E3A425224"
             "WorkingFolder" = "8:_C5E0CE26D50C4CFC870601E2C703EF9A"
             "Icon" = "8:_26FA61B510364BD6AAE79FD67FD9DEBD"
