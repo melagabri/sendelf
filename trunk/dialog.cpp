@@ -169,7 +169,7 @@ void updateSendButton(void) {
 	bool enable;
 	DWORD protocol=(DWORD)SendMessage(hProtocol,CB_GETCURSEL,0,0);
 
-	if (protocl < 0 || protocol > 4) {
+	if (protocol < 0 || protocol > 4) {
 		enable = false;
 	}
 	else if(protocol != 3 && protocol != 4) {
